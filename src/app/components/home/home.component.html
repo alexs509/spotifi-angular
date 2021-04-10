@@ -25,9 +25,9 @@
       <div class="col-md-3"></div>
 
 
-    <div *ngFor="let music of fakeMusic" class="col-3">
+    <div *ngFor="let music of musics" class="col-3">
 
-      <div [class]="'music-card '+music.id">
+      <div [class]="'music-card '+music.idmusic">
         <div class='image' [style]="'background: url('+music.img+')'"></div>
         <div class='wave'></div>
         <div class='wave'></div>
@@ -38,8 +38,8 @@
           <div class='artist'>{{ music.artist }}</div>
         </div>
 
-        <i (click)="playEvent('pause', music.id)" class="fa fa-pause trigger" aria-hidden="true"></i>
-        <i (click)="playEvent('play', music.id)" class="fa fa-play trigger" aria-hidden="true"></i>
+        <i (click)="playEvent('pause', music.idmusic)" class="fa fa-pause trigger" aria-hidden="true"></i>
+        <i (click)="playEvent('play', music.idmusic)" class="fa fa-play trigger" aria-hidden="true"></i>
       </div>
 
 

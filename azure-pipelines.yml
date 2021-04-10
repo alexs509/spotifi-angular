@@ -1,4 +1,11 @@
 # Node.js with Angular
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure for Students(4eb971e3-20fe-45a4-9b02-0abfc78b2c4b)'
+    appType: 'webApp'
+    WebAppName: 'spotifi-angular'
+    packageForLinux: 'dist/spotify-eisi'
 # Build a Node.js project that uses Angular.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript

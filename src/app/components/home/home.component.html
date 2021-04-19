@@ -29,7 +29,7 @@
     <ng-container *ngIf="localMusics.length > 0; else emptyMusic">
       <div *ngFor="let music of localMusics" class="col-3">
         <div [class]="'music-card '+music.idmusic">
-          <div class='image' [style]="'background: url('+music.img+')'"></div>
+          <div class='image' [style]="'background: url('+music.img+'); background-size: contain'"></div>
           <div class='wave'></div>
           <div class='wave'></div>
           <div class='wave'></div>

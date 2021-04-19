@@ -8,7 +8,9 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
   musics;
+  localMusics = [];
   currentAudio: HTMLAudioElement;
+  searchMusic: string;
 
   constructor(
     private rest: RestService
@@ -19,20 +21,19 @@ export class HomeComponent implements OnInit {
   }
 
   getMusic(): void {
-    this.rest.getMusic().subscribe((resp) => {
+    this.rest.getMusic().subscribe((resp : any) => {
       this.musics = resp;
+      this.localMusics = resp;
     })
   }
 
   playEvent(action: string, id: number): void {
-    //this.currentAudio.autoplay = true;
     if (action == 'pause') {
       this.currentAudio.pause();
       $(`.${id} .fa-play`).show();
       $(`.${id} .fa-pause`).hide();
       $(`.${id}.music-card`).removeClass('playing');
     } else {
-      console.log(this.musics[id -1].audio)
       this.currentAudio = new Audio(this.musics[id -1].url);
       this.currentAudio.play();
       this.currentAudio.volume = 1;
@@ -40,6 +41,16 @@ export class HomeComponent implements OnInit {
       $(`.${id} .fa-play`).hide();
       $(`.${id}.music-card`).addClass('playing');
     }
+  }
+
+  search(): void {
+    this.localMusics = this.musics;
+    if(this.searchMusic) {
+      this.localMusics = this.localMusics.filter(d => {
+        return (d.artist.toLowerCase()).includes(this.searchMusic.toLowerCase()) ||
+        (d.name.toLowerCase()).includes(this.searchMusic.toLowerCase());
+      })
+  }
   }
 
 }
